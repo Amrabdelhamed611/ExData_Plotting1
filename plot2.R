@@ -1,4 +1,13 @@
 library(lubridate)
+#download the data from the link
+if(!file.exists("Dataset.zip")){
+    url <- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip"
+    download.file(url, destfile= "Dataset.zip") 
+}
+##unzip the data
+if(!file.exists('household_power_consumption.txt')  ){
+    unzip("Dataset.zip" ) 
+}
 #select rows we want to read from the dataset
 rowsindices <- grep("^(1/2/2007|2/2/2007)",readLines("household_power_consumption.txt"))
 data <- read.table("household_power_consumption.txt",
